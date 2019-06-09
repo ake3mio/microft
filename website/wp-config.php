@@ -18,19 +18,17 @@
  * @package WordPress
  */
 
-
-// ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'wordpress');
+define( 'DB_NAME', getenv('MICROFT_DB_NAME'));
 
 /** MySQL database username */
-define( 'DB_USER', 'root');
+define( 'DB_USER', getenv('MICROFT_DB_USER'));
 
 /** MySQL database password */
-define( 'DB_PASSWORD', '3VPf2gcP6QsxMkB3!');
+define( 'DB_PASSWORD', getenv('MICROFT_DB_PASSWORD'));
 
 /** MySQL hostname */
-define( 'DB_HOST', 'mysql');
+define( 'DB_HOST', getenv('MICROFT_DB_HOST'));
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8');
@@ -47,14 +45,14 @@ define( 'DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         'b01a9b7e70f8e56b075b2b9b0cf6efc2a383b5ec');
-define( 'SECURE_AUTH_KEY',  'b51c964e75169617c847c31f26301dbbb91a38a8');
-define( 'LOGGED_IN_KEY',    '78564ca094908335b1527c21cdeb3cf5a48d2571');
-define( 'NONCE_KEY',        '3cc8ac68d01a5a9afb5377e884c6d963ce25e7a8');
-define( 'AUTH_SALT',        '896f3e13bc25009fff4dc1aa6b31a807a1055b06');
-define( 'SECURE_AUTH_SALT', '753917451b1700343f638efd3bc91bc389244607');
-define( 'LOGGED_IN_SALT',   'c6b7d27d5183e121f32d39d4c5794a1cf04e5c96');
-define( 'NONCE_SALT',       '2ad956ccf2daee498f000977a1c0d171f21b8365');
+define( 'AUTH_KEY',         getenv('MICROFT_AUTH_KEY'));
+define( 'SECURE_AUTH_KEY',  getenv('MICROFT_SECURE_AUTH_KEY'));
+define( 'LOGGED_IN_KEY',    getenv('MICROFT_LOGGED_IN_KEY'));
+define( 'NONCE_KEY',        getenv('MICROFT_NONCE_KEY'));
+define( 'AUTH_SALT',        getenv('MICROFT_AUTH_SALT'));
+define( 'SECURE_AUTH_SALT', getenv('MICROFT_SECURE_AUTH_SALT'));
+define( 'LOGGED_IN_SALT',   getenv('MICROFT_LOGGED_IN_SALT'));
+define( 'NONCE_SALT',       getenv('MICROFT_NONCE_SALT'));
 
 /**#@-*/
 

@@ -1,4 +1,39 @@
 <?php
+if (!session_id()) {
+    session_start();
+}
+
+require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/functions/contact_form.php';
+
+use Carbon_Fields\Container;
+use Carbon_Fields\Field;
+use Carbon_Fields\Carbon_Fields;
+
+add_action('carbon_fields_register_fields', 'crb_attach_theme_options');
+function crb_attach_theme_options()
+{
+    Container::make('theme_options', __('Theme Options'))
+        ->add_fields(array(Field::make('text', 'crb_text', 'Text Field'),
+        ));
+}
+
+add_action('after_setup_theme', 'crb_load');
+function crb_load()
+{
+    Carbon_Fields::boot();
+
+    Container::make('post_meta', 'Image Slider')
+        ->where('post_type', '=', 'page')
+        ->add_fields(array(Field::make('complex', 'slider', 'Slider')
+            ->add_fields(array(
+                Field::make('image', 'image')->set_width(50),
+                Field::make('text', 'title')->set_width(50),
+            ))));
+
+
+}
+
 
 function microft_scripts()
 {
@@ -73,12 +108,22 @@ if (!is_admin()) {
 
 function shapeSpace_check_enum($redirect, $request)
 {
-    // permalink URL format
     if (preg_match('/\?author=([0-9]*)(\/*)/i', $request)) die();
     else return $redirect;
 }
 
-if (isset($_REQUEST['_wpnonce']) && wp_verify_nonce($_REQUEST['_wpnonce'], 'contact_form') && $_SERVER['REQUEST_URI'] == '/contact') {
-    echo json_encode($_POST);
-    exit; // Get out of here, the nonce is rotten!
+ContactForm::create();
+
+function feedbackClassName($key)
+{
+    $form_errors = isset($_SESSION['contact_form_errors']) ? $_SESSION['contact_form_errors'] : array();
+    $should_display = in_array($key, $form_errors);
+
+    $className = 'invalid';
+
+    if ($should_display) {
+        $className .= ' visible';
+    }
+
+    return $className;
 }

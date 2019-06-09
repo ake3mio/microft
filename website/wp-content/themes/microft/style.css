@@ -27,7 +27,7 @@ body {
     text-align: center;
 }
 
- .logo {
+.logo {
     width: 800px;
     max-width: 100%;
     margin: 32px auto;
@@ -43,7 +43,7 @@ body {
     position: relative;
 }
 
-.carousel__item-image {
+.carousel__item img {
     width: 100%;
     height: auto;
 }
@@ -51,14 +51,26 @@ body {
 .carousel__item-text {
     position: absolute;
     color: #fff;
-    background: #000;
     bottom: 0;
     right: 0;
     min-height: 52px;
     margin: 0;
     padding: 16px;
-    font-size: 52px;
+    font-size: 22px;
 }
+
+@media screen and (min-width: 320px) {
+    .carousel__item-text {
+        font-size: calc(22px + 30 * ((100vw - 320px) / 680));
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .carousel__item-text {
+        font-size: 52px;
+    }
+}
+
 
 .content--main {
     padding: 0 16px 32px 16px;
@@ -102,7 +114,7 @@ body {
 }
 
 
-.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
     color: #fff;
     background-color: #27533b;
     border-color: #27533b;
@@ -115,13 +127,18 @@ body {
     box-shadow: 0 0 0 0.2rem rgba(14, 83, 50, 0.49);
 }
 
-.btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus {
+.btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show > .btn-primary.dropdown-toggle:focus {
     box-shadow: 0 0 0 0.2rem rgba(14, 83, 50, 0.49);
 }
 
 textarea.contact-form__message {
     height: 200px;
     resize: none;
+}
+
+.content--main {
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .error-404 {
@@ -131,4 +148,26 @@ textarea.contact-form__message {
 .footer {
     background: #000;
     min-height: 52px;
+}
+
+.invalid {
+    visibility: hidden;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+
+.submit-feedback {
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: rgba(242, 242, 242, 0.7);
 }
