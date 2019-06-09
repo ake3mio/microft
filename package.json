@@ -1,0 +1,16 @@
+{
+  "name": "@ake3m/microft",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "build:watch": "webpack -w --mode=development"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "siema": "^1.5.1",
+    "webpack": "4.33.0",
+    "webpack-cli": "3.3.2"
+  }
+}

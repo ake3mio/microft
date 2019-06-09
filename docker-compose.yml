@@ -1,0 +1,25 @@
+version: "2"
+services:
+  my-wpdb:
+    image: mariadb
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MICROFT_DB_PASSWORD}
+  my-wp:
+    image: wordpress
+    volumes:
+      - ./website:/var/www/html
+    ports:
+      - "8080:80"
+    links:
+      - my-wpdb:mysql
+    environment:
+      WORDPRESS_DB_PASSWORD: ${MICROFT_DB_PASSWORD}
+      MICROFT_DB_NAME: ${MICROFT_DB_NAME}
+      MICROFT_DB_USER: ${MICROFT_DB_USER}
+      MICROFT_DB_PASSWORD: ${MICROFT_DB_PASSWORD}
+      MICROFT_DB_HOST: ${MICROFT_DB_HOST}
+      MICROFT_DB_PREFIX: ${MICROFT_DB_PREFIX}

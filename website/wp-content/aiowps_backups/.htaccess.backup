@@ -1,0 +1,25 @@
+
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+<Files xmlrpc.php>
+order deny,allow
+deny from all
+allow from 123.123.123.123
+</Files>
+
+<IfModule mod_rewrite.c>
+RewriteCond %{QUERY_STRING} ^author=([0-9]*)
+RewriteRule .* http://example.com/? [L,R=302]
+</IfModule>
+
+# END WordPress
+
